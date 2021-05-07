@@ -44,7 +44,6 @@ public class ProductDetailsDao extends DatabaseConstants {
     }
 
     private ProductData getProductNameDate(String CropID) {
-
         String sqlStmt = "SELECT CropName, MaxQuantity , ProductionDate , ExpirationDate , Price FROM Crop WHERE CropID = ?;";
 
         String cropName, productionDate, expirationData;
@@ -52,7 +51,7 @@ public class ProductDetailsDao extends DatabaseConstants {
 
         try {
             PreparedStatement st = con.prepareStatement(sqlStmt);
-            st.setString(1,CropID);
+            st.setString(1, CropID);
             ResultSet rs = st.executeQuery();
 
             if(rs.next()) {
@@ -92,7 +91,9 @@ public class ProductDetailsDao extends DatabaseConstants {
         }catch(Exception e){
             e.printStackTrace();
         }
-        
+        if(result.size() == 0)
+            result.add("https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png");
+
         return result;
     } 
 
@@ -122,7 +123,6 @@ public class ProductDetailsDao extends DatabaseConstants {
         result.setImages(getProductImages(cropID));
         result.addCategories(getCategory(cropID));
         return result;
-
     }
 
 }

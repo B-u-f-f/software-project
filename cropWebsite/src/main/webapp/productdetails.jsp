@@ -48,8 +48,10 @@
             <div class="row">
                 <div class="col-2">
                     <c:set var = "imageList" value = "${data.getImages()}" />
-                    <img src="${imageList.get(0)}" width="60%" id="productimg">
-
+                    <c:set var="img_src" value="" />
+                    <c:set var="img_src" value = "${imageList.get(0)}"/>
+                    <img src="${img_src}" width="60%" id="productimg">
+                
 
                     <div class="small-img-row">
                         <c:if test = "${imageList.size() > 1}">
@@ -67,9 +69,16 @@
                 </div>
                 <div class="col-2">
                     <h1>${data.getCropName()}</h1>
-                    <h4>${data.getPrice()} &#8377;/kg</h4>
-                    <input type="kilograms" value="5">
-                    <a href="" class="btn">Add to cart</a>
+                    <h4>${data.getPrice()} &#8377;/kg</h4> 
+                    
+                    <form action="addCart" method="POST">
+                        <input type="hidden" name="cropID" value="${sessionScope.cropID}">
+                        <input type="number" name="quantity" value="5">
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                
+               
+                    <!-- <a href="" class="btn">Add to cart</a> -->
                     <h3>Product Details <i class="fa fa-indent"></i></h3>
                     <br>
                     <p>Production Date: ${data.getProductionDate()}</p>

@@ -79,7 +79,7 @@
             <c:set var="first_row" value="${sessionScope.featuredProducts}" />
             <c:forEach items="${first_row}" var="product">
                 <div class="col-4">
-                    <a href="product?CropID=${product.getCropID()}/"> 
+                    <a href="product?CropID=${product.getCropID()}"> 
                     <img src="${product.getImageURI()}">
                     </a>
                     <h4>${product.getCropName()}</h4>
@@ -109,7 +109,7 @@
             <div class="row">
                 <c:forEach items="${first_row}" var="product">
                     <div class="col-4">
-                        <a href="product?CropID=${product.getCropID()}/"> 
+                        <a href="product?CropID=${product.getCropID()}"> 
                             <img src="${product.getImageURI()}"> 
                         </a>
                         <h4>${product.getCropName()}</h4>

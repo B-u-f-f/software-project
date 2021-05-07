@@ -31,7 +31,7 @@ WHERE CropID = 'Crop123';
 */
 
 public class CartDao extends DatabaseConstants {
-    Connection con;
+    private Connection con;
 
     public CartDao() {
         try {

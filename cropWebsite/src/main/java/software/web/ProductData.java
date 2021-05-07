@@ -31,6 +31,7 @@ public class ProductData {
     }
 
     public static ProductData getEmptyProductData() {
+        
         return new ProductData("", "", "", 0, 0);
     }
 
