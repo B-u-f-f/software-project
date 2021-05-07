@@ -58,6 +58,7 @@ public class IndexServlet extends HttpServlet {
         httpSession.setAttribute("featuredProducts", featuredProducts);
         httpSession.setAttribute("seasonalName", seasonalCrop[0]);
         httpSession.setAttribute("seasonalImage", seasonalCrop[1]);
+        httpSession.setAttribute("seasonalCropID", seasonalCrop[2]);
 
         RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
         rd.forward(req, res);        

@@ -28,17 +28,16 @@ public class CropData {
         return obj;
     }
 
-
     public String getCropID() { return cropID; }
     public String getCropName() { return cropName; }
     public int getPrice() { return price; }
     
     public String getImageURI() { return imageURI; }
-    public void setImageURI(String imageURI){
+        public void setImageURI(String imageURI){
         this.imageURI = imageURI;
     } 
     
-    public int getRating() { return rating; }
+public int getRating() { return rating; }
     public void setRating(int rating){
         if(rating > 5) rating = 5;
         else if(rating < 0) rating = 0;

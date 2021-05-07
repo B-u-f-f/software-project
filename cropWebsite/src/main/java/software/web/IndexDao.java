@@ -167,7 +167,7 @@ public class IndexDao extends DatabaseConstants {
 
     public String[] getSeasonalCrop() {
 
-        String sqlStmt = "SELECT DISTINCT c.CropName, ci.Images FROM Crop c INNER JOIN CropCategory cc ON c.CropID = cc.CropID  LEFT OUTER JOIN CropImages ci on c.CropID = ci.CropID WHERE cc.Category = ?;";
+        String sqlStmt = "SELECT DISTINCT c.CropID, c.CropName, ci.Images FROM Crop c INNER JOIN CropCategory cc ON c.CropID = cc.CropID  LEFT OUTER JOIN CropImages ci on c.CropID = ci.CropID WHERE cc.Category = ?;";
 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("MM");
@@ -186,7 +186,7 @@ public class IndexDao extends DatabaseConstants {
             seasonName = "S: Autumn";
         }
 
-        String result[] = new String[2];
+        String result[] = new String[3];
 
         try{
             Connection con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
@@ -197,8 +197,9 @@ public class IndexDao extends DatabaseConstants {
             if(rs.next()){
                 result[0] = rs.getString("CropName");
                 result[1] = rs.getString("Images");
+                result[2] = rs.getString("CropID");
             } else {
-                result[0] = result[1] = "";
+                result[0] = result[1] = result[2] = "";
             }
 
             con.close();

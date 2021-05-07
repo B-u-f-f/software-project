@@ -5,52 +5,51 @@
 <%@ page import = "software.web.index.database.CropData" %>
 <%@ page import = "java.util.ArrayList" %>
 
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Main</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="<link rel="preconnect" href="https://fonts.gstatic.com"> -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Main</title>
+        <link rel="stylesheet" href="style.css">
+        <!-- <link rel="stylesheet" href="<link rel="preconnect" href="https://fonts.gstatic.com"> -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 <body>
     <c:set var="sessionScope" value="${request.getSession()}" /> 
 
-<div class="header">
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">
-                <img src="images/cs.PNG" width="165px">
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="images/cs.PNG" width="165px">
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Products</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="">Account</a></li>
+                    </ul>
+                </nav>
+                <img src="images/images/cart.png" width="30px" height="30px">
+                <img src="images/images/menu.png" class="menu-icon" onclick="menutoggle()">
             </div>
-            <nav>
-                <ul id="MenuItems">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Products</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Contact</a></li>
-                    <li><a href="">Account</a></li>
-                </ul>
-            </nav>
-            <img src="images/images/cart.png" width="30px" height="30px">
-            <img src="images/images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <h1>Connecting Farms<br>To your home!</h1>
+                <p>Farmers are the backbone of our society</p>
+                <a href="" class="btn">Explore Now &#8594;</a>
+            </div>
+            <div class="col-2">
+                <img src="images/far.png">
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-2">
-            <h1>Connecting Farms<br>To your home!</h1>
-            <p>Farmers are the backbone of our society</p>
-            <a href="" class="btn">Explore Now &#8594;</a>
-        </div>
-        <div class="col-2">
-            <img src="images/far.png">
-        </div>
-    </div>
-</div>
 
 <!---featured categories--->
 
@@ -70,6 +69,7 @@
         </div>
     </div>
 
+
     <!--featured products-->
     <div class="small-container">
         <h2 class="title">featured products</h2>
@@ -77,7 +77,9 @@
             <c:set var="first_row" value="${sessionScope.featuredProducts}" />
             <c:forEach items="${first_row}" var="product">
                 <div class="col-4">
+                    <a href="product?CropID=${product.getCropID()}/"> 
                     <img src="${product.getImageURI()}">
+                    </a>
                     <h4>${product.getCropName()}</h4>
                     <div class="rating">
                         <c:set var="rating_value" value="${product.getRating()}" />
@@ -96,17 +98,18 @@
                     <p>${product.getPrice()} &#8377;/kg </p>
                 </div>
             </c:forEach>
-            
         </div>
     
-
+        <!-- Other Products -->
         <h2 class="title">other products</h2>
 
             <c:set var="first_row" value="${sessionScope.otherProductsRowOne}" />
             <div class="row">
                 <c:forEach items="${first_row}" var="product">
                     <div class="col-4">
-                        <img src="${product.getImageURI()}">
+                        <a href="product?CropID=${product.getCropID()}/"> 
+                            <img src="${product.getImageURI()}"> 
+                        </a>
                         <h4>${product.getCropName()}</h4>
                         <div class="rating">
                             <c:set var="rating_value" value="${product.getRating()}" />
@@ -131,7 +134,11 @@
             <div class="row">
                 <c:forEach items="${second_row}" var="product">
                     <div class="col-4">
-                        <img src="${product.getImageURI()}">
+                        <a href="product?CropID=${product.getCropID()}">
+                            <img src="${product.getImageURI()}">
+                        </a>
+
+                        
                         <h4>${product.getCropName()}</h4>
                         <div class="rating">
                             <c:set var="rating_value" value="${product.getRating()}" />
@@ -165,7 +172,7 @@
                     <p>In Season Now</p>
                     <h1>${sessionScope.seasonalName}</h1>
                     <small>January-March and September-December are the ideal seasons for growing pumpkin.<br>For the rain fed crop, sowing can be started after the receipt of first few showers during May-June</small>
-                    <a href="" class="btn">Buy Now &#8594;</a>
+                    <a href="product?CropID=${sessionScope.seasonalCropID}" class="btn">Buy Now &#8594;</a>
                 </div>
             </div>
         </div>
