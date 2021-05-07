@@ -14,7 +14,7 @@ public class CustomerSignUpDao extends DatabaseConstants{
         
         String sqlStmt = "INSERT INTO CustomerAccount VALUES (?, ?, ?);";
         String sqlStmt1 = "INSERT INTO Cart VALUES (?, 0, 0)";
-        
+       
         try {
             Connection con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
             PreparedStatement st = con.prepareStatement(sqlStmt);
@@ -26,11 +26,10 @@ public class CustomerSignUpDao extends DatabaseConstants{
             st = con.prepareStatement(sqlStmt1);
             st.setString(1, email);
             st.executeQuery();
-
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
-            
+        } 
     }
 
 }

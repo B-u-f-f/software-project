@@ -11,12 +11,12 @@ import software.web.database.DatabaseConstants;
 public class FarmerSignUpDao extends DatabaseConstants {
 
 
-    public void putToFarmerDB(String email, String phoneNum, String pass, String fname, String lname, String acc_creation_date, String address) {
+    public void putToFarmerDB(String email, String phoneNum, String pass, String fname, String lname, String acc_creation_date, String address){
 
         String sqlStmt = "INSERT INTO FarmerAccount VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+        
+        
         try {
-
             Connection con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
             PreparedStatement st = con.prepareStatement(sqlStmt);
             st.setString(1, email);
@@ -28,6 +28,8 @@ public class FarmerSignUpDao extends DatabaseConstants {
             st.setString(7, address);
 
             st.executeUpdate();
+
+            con.close();
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ page import = "software.web.index.database.CropData" %>
+<%@ page import = "java.util.ArrayList" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +19,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <c:set var="sessionScope" value="${request.getSession()}" /> 
 
 <div class="header">
     <div class="container">
@@ -66,156 +74,83 @@
     <div class="small-container">
         <h2 class="title">featured products</h2>
         <div class="row">
-            <div class="col-4">
-                <img src="images/pro2.PNG">
-                <h4>Red Tomato</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
+            <c:set var="first_row" value="${sessionScope.featuredProducts}" />
+            <c:forEach items="${first_row}" var="product">
+                <div class="col-4">
+                    <img src="${product.getImageURI()}">
+                    <h4>${product.getCropName()}</h4>
+                    <div class="rating">
+                        <c:set var="rating_value" value="${product.getRating()}" />
+                        <c:if test="${rating_value != 0}">
+                            <c:forEach var="i" begin="1" end="${rating_value}" step="1">
+                                <i class="fa fa-star"></i>
+                            </c:forEach>    
+                        </c:if>
+                        
+                        <c:if test="${(5 - rating_value) != 0}">
+                            <c:forEach var="i" begin="1" end="${5 - rating_value}" step="1">
+                                <i class="fa fa-star-o"></i>
+                            </c:forEach>
+                        </c:if>
+                    </div>
+                    <p>${product.getPrice()} &#8377;/kg </p>
                 </div>
-                <p>45.00 &#8377;/kg </p>
-            </div>
-            <div class="col-4">
-                <img src="images/pro4.PNG">
-                <h4>Potato</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>29.00 &#8377;/kg </p>
-            </div>
-            <div class="col-4">
-                <img src="images/pro3.PNG">
-                <h4>Onion</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>19.00 &#8377;/kg </p>
-            </div>
-            <div class="col-4">
-                <img src="images/pro5.PNG">
-                <h4>Rice</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>174.00 &#8377;/kg </p>
-            </div>
+            </c:forEach>
+            
         </div>
+    
+
         <h2 class="title">other products</h2>
-        <div class="row">
-            <div class="col-4">
-                <img src="images/pro6.PNG">
-                <h4>wheat</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>20.00 &#8377;/kg </p>
-            </div>
-            <div class="col-4">
-                <img src="images/pro7.PNG">
-                <h4>Sugar</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>55.00 &#8377;/kg </p>
-            </div>
-            <div class="col-4">
-                <img src="images/pro8.PNG">
-                <h4>Mustard Oil</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>181.00 &#8377;/L </p>
-            </div>
-            <div class="col-4">
-                <img src="images/pro9.PNG">
-                <h4>Watermelon</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>40.00 &#8377;/kg </p>
-            </div>
+
+            <c:set var="first_row" value="${sessionScope.otherProductsRowOne}" />
             <div class="row">
-                <div class="col-4">
-                    <img src="images/pro10.PNG">
-                    <h4>Brinjal</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
+                <c:forEach items="${first_row}" var="product">
+                    <div class="col-4">
+                        <img src="${product.getImageURI()}">
+                        <h4>${product.getCropName()}</h4>
+                        <div class="rating">
+                            <c:set var="rating_value" value="${product.getRating()}" />
+                            <c:if test="${rating_value != 0}">
+                                <c:forEach var="i" begin="1" end="${rating_value}" step="1">
+                                    <i class="fa fa-star"></i>
+                                </c:forEach>    
+                            </c:if>
+                            
+                            <c:if test="${(5 - rating_value) != 0}">
+                                <c:forEach var="i" begin="1" end="${5 - rating_value}" step="1">
+                                    <i class="fa fa-star-o"></i>
+                                </c:forEach>
+                            </c:if>
+                        </div>
+                        <p>${product.getPrice()} &#8377;/kg </p>
                     </div>
-                    <p>21.00 &#8377;/kg </p>
-                </div>
-                <div class="col-4">
-                    <img src="images/pro11.PNG">
-                    <h4>Pulses</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>29.00-120 &#8377;/kg </p>
-                </div>
-                <div class="col-4">
-                    <img src="images/pro12.PNG">
-                    <h4>Cotton</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                    </div>
-                    <p>700.00 &#8377;/kg </p>
-                </div>
-                <div class="col-4">
-                    <img src="images/pro1.PNG">
-                    <h4>Moong dal</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>165.00 &#8377;/kg </p>
-                </div>
+                </c:forEach>
             </div>
-        </div>
+
+            <c:set var="second_row" value="${sessionScope.otherProductsRowTwo}" />
+            <div class="row">
+                <c:forEach items="${second_row}" var="product">
+                    <div class="col-4">
+                        <img src="${product.getImageURI()}">
+                        <h4>${product.getCropName()}</h4>
+                        <div class="rating">
+                            <c:set var="rating_value" value="${product.getRating()}" />
+                            <c:if test="${rating_value != 0}">
+                                <c:forEach var="i" begin="1" end="${rating_value}" step="1">
+                                    <i class="fa fa-star"></i>
+                                </c:forEach>    
+                            </c:if>
+                            
+                            <c:if test="${(5 - rating_value) != 0}">
+                                <c:forEach var="i" begin="1" end="${5 - rating_value}" step="1">
+                                    <i class="fa fa-star-o"></i>
+                                </c:forEach>
+                            </c:if>
+                        </div>
+                        <p>${product.getPrice()} &#8377;/kg </p>
+                    </div>
+                </c:forEach>
+            </div>
     </div>
 
     <!--Seasonal offer-->
@@ -224,11 +159,11 @@
         <div class="small-container">
             <div class="row">
                 <div class="col-2">
-                    <img src="images/seasonal.PNG" width="350px">
+                    <img src="${sessionScope.seasonalImage}" width="350px">
                 </div>
                 <div class="col-2">
                     <p>In Season Now</p>
-                    <h1>Pumpkin</h1>
+                    <h1>${sessionScope.seasonalName}</h1>
                     <small>January-March and September-December are the ideal seasons for growing pumpkin.<br>For the rain fed crop, sowing can be started after the receipt of first few showers during May-June</small>
                     <a href="" class="btn">Buy Now &#8594;</a>
                 </div>

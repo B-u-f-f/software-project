@@ -15,6 +15,7 @@ public class LoginPageDao extends DatabaseConstants{
         
         String sql = "SELECT * FROM (SELECT EmailID, PasswordHash FROM FarmerAccount UNION SELECT EmailID, PasswordHash FROM CustomerAccount) AS EmailPassword WHERE EmailID = ? AND PasswordHash = ?;";
 
+        
         try {
             Connection con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
             PreparedStatement st = con.prepareStatement(sql);
@@ -24,10 +25,13 @@ public class LoginPageDao extends DatabaseConstants{
             if(rs.next()) {
                 return true;
             }
+
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }	
+        } 
 
+        
         return false;	
 	}
 }
