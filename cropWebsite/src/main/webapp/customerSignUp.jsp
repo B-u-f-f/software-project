@@ -14,7 +14,7 @@
             Email: <input type="text" name="cust_email"> <br><br>
             Phone Number: <input type="text" name="cust_phone"><br><br>
             Password : <input type="password" name="password1"><br><br>
-            Re-enter Password: <input type="password2"> <br><br>
+            Re-enter Password: <input type="password" name="password2"> <br><br>
 
             <input type="submit" value="Sign Up">
 
