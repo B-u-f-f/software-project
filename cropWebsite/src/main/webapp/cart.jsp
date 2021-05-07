@@ -1,5 +1,13 @@
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import = "java.util.ArrayList" %>
+<%@ page import = "software.web.index.database.CropData" %> 
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +17,14 @@
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="<link rel="preconnect" href="https://fonts.gstatic.com"> -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
 
+<body>
+    <c:set var="sessionScope" value="${request.getSession()}" />
+    <c:set var="data" value="${sessionScope.cropData}" />
 
     <div class="container">
         <div class="navbar">
@@ -36,26 +47,47 @@
 
 
 
-<!--cart items details-->
+    <!--cart items details-->
 
 
     <div class="smart-container cart-page">
-    <table>
-        <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-        </tr>
-        <tr>
-            <td>
-                <div class="cart-info">
-                    <img src="images/cat-4.PNG">
-                    <div>
-                        <p>Orange</p>
-                        <small>65.00 &#8377;/kg</small>
-                        <br>
-                        <a href="">Remove</a>
-                    </div>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            
+            <c:set var="total" value="0" />
+            <c:forEach items="${data}" var="item">
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="${item.getImageURI()}">
+                            <div>
+                                <p></p>
+                                <small>${item.getPrice()} &#8377;/kg</small>
+                                <br>
+                                <a href="">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td><input type="number" value="${item.getQuantity()}"></td>
+                    <c:set var="total" value="${total + item.getQuantity() * item.getPrice()}" />
+                    <td>${item.getQuantity() * item.getPrice()} &#8377;/kg</td>
+                </tr>
+            </c:forEach>
+            <!--
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="images/cat-4.PNG">
+                        <div>
+                            <p>Orange</p>
+                            <small>65.00 &#8377;/kg</small>
+                            <br>
+                            <a href="">Remove</a>
+                        </div>
                     </div>
                 </td>
                 <td><input type="number" value="1"></td>
@@ -71,26 +103,27 @@
                             <br>
                             <a href="">Remove</a>
                         </div>
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>35.00 &#8377;/kg</td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="cart-info">
+                        <img src="images/cat-2.PNG">
+                        <div>
+                            <p>banana</p>
+                            <small>25.00 &#8377;/kg</small>
+                            <br>
+                            <a href="">Remove</a>
                         </div>
-                    </td>
-                    <td><input type="number" value="1"></td>
-                    <td>35.00 &#8377;/kg</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="cart-info">
-                            <img src="images/cat-2.PNG">
-                            <div>
-                                <p>banana</p>
-                                <small>25.00 &#8377;/kg</small>
-                                <br>
-                                <a href="">Remove</a>
-                            </div>
-                            </div>
-                        </td>
-                        <td><input type="number" value="1"></td>
-                        <td>25.00 &#8377;/kg</td>
-                    </tr>
+                    </div>
+                </td>
+                <td><input type="number" value="1"></td>
+                <td>25.00 &#8377;/kg</td>
+            </tr>
+            -->
         </table>
 
 
@@ -99,15 +132,15 @@
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>125.00 &#8377;</td>
+                    <td>${total} &#8377;</td>
                 </tr>
                 <tr>
                     <td>Tax</td>
-                    <td>20.00 &#8377;</td>
+                    <td>${total * 0.2} &#8377;</td>
                 </tr>
                 <tr>
                     <td>Subtotal</td>
-                    <td>145.00 &#8377;</td>
+                    <td>${total * 1.2} &#8377;</td>
                 </tr>
             </table>
 
@@ -116,7 +149,7 @@
     </div>
 
 
-<!--footer-->
+    <!--footer-->
 
     <div class="footer">
         <div class="container">
@@ -158,25 +191,25 @@
     </div>
 
 
-    
-<!--js for toggle menu-->
+
+    <!--js for toggle menu-->
 
     <script>
         var MenuItems = document.getElementById("MenuItems");
 
-        MenuItems.style.maxHeight="0px";
+        MenuItems.style.maxHeight = "0px";
 
-        function menutoggle(){
-            if(MenuItems.style.maxHeight == "0px")
-            {
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
                 MenuItems.style.maxHeight = "200px";
             }
-        else{
-            MenuItems.style.maxHeight = "0px";
-        }
+            else {
+                MenuItems.style.maxHeight = "0px";
+            }
         }
     </script>
 
 
 </body>
+
 </html>

@@ -16,7 +16,15 @@ import software.web.login.database.LoginPageDao;
 @WebServlet("/loginPage") 
 public class LoginPageServlet extends HttpServlet {
 
+    HttpSession session;
+
     protected void doPost(HttpServletRequest req, HttpServletResponse res)  throws ServletException, IOException{
+        session = req.getSession();
+
+        if(session.getAttribute("userEmail") != null){
+            res.sendRedirect("index.jsp");
+        }
+
 
         String email = req.getParameter("user_email");
         String pass = req.getParameter("pass1");
@@ -24,14 +32,15 @@ public class LoginPageServlet extends HttpServlet {
         LoginPageDao lpd = new LoginPageDao();
 
         if(lpd.check(email, pass)) {
-            HttpSession session = req.getSession();
             session.setAttribute("userEmail", email);
-            
+
             res.sendRedirect("index.jsp");
         } else {				
             res.sendRedirect("loginPage.jsp");			
         }
 
     }
+
+
 
 }

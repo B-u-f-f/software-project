@@ -52,6 +52,14 @@ public class IndexServlet extends HttpServlet {
         
         String seasonalCrop[] = id.getSeasonalCrop();
         httpSession = req.getSession();
+        
+        String loginText = "Logout";
+        String loginURL = "/logout";
+        
+        if(httpSession.getAttribute("userEmail") == null) {
+            loginText = "Login";
+            loginURL = "/loginPage.jsp";
+        }
 
         httpSession.setAttribute("otherProductsRowOne", otherProducts1);
         httpSession.setAttribute("otherProductsRowTwo", otherProducts2);
@@ -59,6 +67,8 @@ public class IndexServlet extends HttpServlet {
         httpSession.setAttribute("seasonalName", seasonalCrop[0]);
         httpSession.setAttribute("seasonalImage", seasonalCrop[1]);
         httpSession.setAttribute("seasonalCropID", seasonalCrop[2]);
+        httpSession.setAttribute("loginText", loginText);
+        httpSession.setAttribute("loginURL", loginURL);
 
         RequestDispatcher rd = req.getRequestDispatcher("home.jsp");
         rd.forward(req, res);        

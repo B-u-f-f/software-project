@@ -12,8 +12,9 @@ import software.web.database.DatabaseConstants;
 public class LoginPageDao extends DatabaseConstants{
 
     public boolean check(String email, String pass) {
-        
-        String sql = "SELECT * FROM (SELECT EmailID, PasswordHash FROM FarmerAccount UNION SELECT EmailID, PasswordHash FROM CustomerAccount) AS EmailPassword WHERE EmailID = ? AND PasswordHash = ?;";
+        // String sql = "SELECT * FROM (SELECT EmailID, PasswordHash FROM FarmerAccount UNION SELECT EmailID, PasswordHash FROM CustomerAccount) AS EmailPassword WHERE EmailID = ? AND PasswordHash = ?;";
+
+        String sql = "SELECT EmailID, PasswordHash FROM CustomerAccount WHERE EmailID = ? AND PasswordHash = ?;";
 
         
         try {
