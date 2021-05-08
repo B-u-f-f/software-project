@@ -68,7 +68,7 @@
                                 <p></p>
                                 <small>${item.getPrice()} &#8377;/kg</small>
                                 <br>
-                                <a href="">Remove</a>
+                                <a href="/removeCartItem?CropID=${item.getCropID()}">Remove</a>
                             </div>
                         </div>
                     </td>
@@ -77,53 +77,7 @@
                     <td>${item.getQuantity() * item.getPrice()} &#8377;/kg</td>
                 </tr>
             </c:forEach>
-            <!--
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="images/cat-4.PNG">
-                        <div>
-                            <p>Orange</p>
-                            <small>65.00 &#8377;/kg</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>65.00 &#8377;/kg</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="images/cat-3.PNG">
-                        <div>
-                            <p>kiwi</p>
-                            <small>35.00 &#8377;/kg</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>35.00 &#8377;/kg</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="images/cat-2.PNG">
-                        <div>
-                            <p>banana</p>
-                            <small>25.00 &#8377;/kg</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>25.00 &#8377;/kg</td>
-            </tr>
-            -->
+
         </table>
 
 

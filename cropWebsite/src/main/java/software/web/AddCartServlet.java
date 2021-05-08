@@ -35,6 +35,8 @@ public class AddCartServlet extends HttpServlet{
 
             asd.putProductToCart(cID, email, quan);
             res.sendRedirect("/product?CropID=" + cID);
+
+
         }
     }
 }

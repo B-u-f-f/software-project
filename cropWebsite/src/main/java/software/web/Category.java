@@ -39,6 +39,10 @@ public class Category {
         }else return "";
     }
 
+    public CategoryType getCategoryTypeEnum(){
+        return type;
+    }
+
     public void setCategoryType(CategoryType ct) {
         type = ct;
     }

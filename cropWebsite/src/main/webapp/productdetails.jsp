@@ -72,7 +72,7 @@
                     <h4>${data.getPrice()} &#8377;/kg</h4> 
                     
                     <form action="addCart" method="POST">
-                        <input type="hidden" name="cropID" value="${sessionScope.cropID}">
+                        <input type="hidden" name="cropID" value="${data.getCropID()}">
                         <input type="number" name="quantity" value="5">
                         <input type="submit" value="Add to Cart">
                     </form>

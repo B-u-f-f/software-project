@@ -11,18 +11,6 @@ import java.text.SimpleDateFormat;
 //Project imports
 import software.web.database.DatabaseConstants;
 
-/* 
-UPDATE Cart SET ItemQuantity = ItemQuantity + 1, TotalPrice = (
-	SELECT c.ProductQuantity * c2.Price 
-	FROM `Contains` c 
-	INNER JOIN Crop c2 
-	ON c.CropID = c2.CropID
-	WHERE c.EmailID = ?
-)
-WHERE EmailID = ?;
-
-*/
-
 public class AddCartDao extends DatabaseConstants{
     private Connection con;
 
@@ -42,8 +30,10 @@ public class AddCartDao extends DatabaseConstants{
         String strDate = formatter.format(date);
 
         String sqlStmt = "INSERT INTO `Contains` VALUES (?, ?, ?, ?);";
-        String sqlUpdateStmt = "UPDATE Cart SET ItemQuantity = ItemQuantity + 1, TotalPrice = (SELECT c.ProductQuantity * c2.Price FROM `Contains` c INNER JOIN Crop c2 ON c.CropID = c2.CropID WHERE c.EmailID = ?) WHERE EmailID = ?;";
-        
+        //Change query error here
+        String sqlUpdateStmt = 
+        "UPDATE Cart SET ItemQuantity = (SELECT COUNT(c.EmailID) FROM `Contains` c INNER JOIN Crop c2 ON c.CropID = c2.CropID WHERE c.EmailID = ? GROUP BY c.EmailID), TotalPrice = (SELECT SUM(c.ProductQuantity * c2.Price) FROM `Contains` c INNER JOIN Crop c2 ON c.CropID = c2.CropID WHERE c.EmailID = ?) WHERE EmailID = ?;";
+   
         try {
             PreparedStatement st = con.prepareStatement(sqlStmt);
             st.setString(1, cropID);
@@ -55,6 +45,7 @@ public class AddCartDao extends DatabaseConstants{
             st = con.prepareStatement(sqlUpdateStmt);
             st.setString(1, emailID);
             st.setString(2, emailID);
+            st.setString(3, emailID);
             st.executeUpdate();
 
         } catch (Exception e) {
@@ -63,6 +54,8 @@ public class AddCartDao extends DatabaseConstants{
 
     }
     
-    
+    protected void finalize() throws Throwable {
+        con.close();
+    }
 
 }

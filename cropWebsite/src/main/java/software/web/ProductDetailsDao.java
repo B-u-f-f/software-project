@@ -62,7 +62,7 @@ public class ProductDetailsDao extends DatabaseConstants {
                 maxQuantity = rs.getInt("MaxQuantity");
                 price = rs.getInt("Price");
 
-                return new ProductData(cropName, productionDate, expirationData, maxQuantity, price);
+                return new ProductData(CropID, cropName, productionDate, expirationData, maxQuantity, price);
             }
             
         } catch(Exception e) {
