@@ -37,7 +37,7 @@ public class ProductsServlet extends HttpServlet {
         }
 
         int numProduct = pd.getTotalProductLength();
-        int numPages = numProduct / NUMPERPAGE;
+        int numPages =  (int)Math.ceil((double)numProduct / NUMPERPAGE);
 
         ProductData[] products = pd.getAllProductData(pageNumber, NUMPERPAGE);
  
@@ -56,9 +56,11 @@ public class ProductsServlet extends HttpServlet {
         httpSession.setAttribute("numPages", numPages);
         httpSession.setAttribute("numPerPage", NUMPERPAGE);
         httpSession.setAttribute("productLength", products.length);
-        System.out.println(numRows);
-        System.out.println(products.length);
-    
+        
+        // System.out.println(numRows);
+        // System.out.println(products.length);
+        // System.out.println(numPages);
+
         httpSession.setAttribute("numRows", numRows);
 
 

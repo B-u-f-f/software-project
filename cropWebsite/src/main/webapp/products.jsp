@@ -284,8 +284,8 @@
 
 
         <div class="page-btn">
-            <c:forEach var="i" begin="1" end="${numRows}" step="1">
-                <span><a href="/productShowcase?pageNo=${i}">${i}</a></span>
+            <c:forEach var="i" begin="1" end="${numPages}" step="1">
+                <a href="/productShowcase?pageNo=${i}"><span>${i}</span></a>
             </c:forEach>
             <!-- <span>&#8594;</span> -->
         </div>

@@ -126,15 +126,15 @@ public class ProductsDao extends DatabaseConstants {
         }
 
         int firstp = (pageNum - 1) * perPage;
-        firstp = (firstp + 1) > products.size() ? 0 : firstp;
+        firstp = (firstp + 1) > products.size() ? 0 : firstp; //3
 
-        int lastp = firstp + perPage;
-        lastp = lastp > products.size() ? products.size() : lastp;
+        int lastp = firstp + perPage; //6
+        lastp = lastp > products.size() ? products.size() : lastp; //6
 
-        ProductData[] pd = new ProductData[lastp-firstp];
+        ProductData[] pd = new ProductData[lastp - firstp];
 
         for(int i = firstp; i < lastp; i++){
-            pd[i] = products.get(i);
+            pd[i - firstp] = products.get(i);
         }
 
         return pd;
