@@ -44,11 +44,12 @@ public class IndexDao extends DatabaseConstants {
         }
 
         Collections.shuffle(result);
-        
-        for(int i = 8; i < result.size(); i++) {
+
+
+        int n = result.size();
+        for(int i = 8; i < n; i++) {
             result.remove(8);
         }
-
         return result;
     }
 

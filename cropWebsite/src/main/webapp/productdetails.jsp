@@ -22,24 +22,7 @@
         <c:set var="sessionScope" value="${request.getSession()}" /> 
         <c:set var="data" value="${sessionScope.productData}" />
 
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <img src="images/cs.PNG" width="165px">
-                </div>
-                <nav>
-                    <ul id="MenuItems">
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Products</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href="">Account</a></li>
-                    </ul>
-                </nav>
-                <img src="images/images/cart.png" width="30px" height="30px">
-                <img src="images/images/menu.png" class="menu-icon" onclick="menutoggle()">
-            </div>
-        </div>
+        <%@ include file="header.jsp" %>
 
 
         <!--single product details-->
@@ -159,89 +142,50 @@
 
 
     <!--footer-->
-
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col-1">
-                        <h3>Download our App</h3>
-                        <p>Download App for Android and Ios mobile phone.</p>
-                        <div class="app-logo">
-                            <img src="images/play-store.png">
-                            <img src="images/app-store.png">
-                        </div>
-                    </div>
-                    <div class="footer-col-2">
-                        <img src="images/cs.PNG">
-                        <p>Our purpose is to connect farmers directly to the people</p>
-                    </div>
-                    <div class="footer-col-3">
-                        <h3>Useful links</h3>
-                        <ul>
-                            <li>Coupons</li>
-                            <li>Blog Post</li>
-                            <li>Return policy</li>
-                            <li>Join Affiliate</li>
-                        </ul>
-                    </div>
-                    <div class="footer-col-4">
-                        <h3>Follow us</h3>
-                        <ul>
-                            <li>Facebook</li>
-                            <li>Twitter</li>
-                            <li>Instagram</li>
-                            <li>YouTube</li>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-                <p class="copy-right">Copyright 2020</p>
-            </div>
-        </div>
-
+    <%@ include file="footer.jsp" %>
 
         
-        <!--js for toggle menu-->
+    <!--js for toggle menu-->
 
-        <script>
-            var MenuItems = document.getElementById("MenuItems");
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
 
-            MenuItems.style.maxHeight="0px";
+        MenuItems.style.maxHeight="0px";
 
-            function menutoggle(){
-                if(MenuItems.style.maxHeight == "0px")
-                {
-                    MenuItems.style.maxHeight = "200px";
-                }
-            else{
-                MenuItems.style.maxHeight = "0px";
+        function menutoggle(){
+            if(MenuItems.style.maxHeight == "0px")
+            {
+                MenuItems.style.maxHeight = "200px";
             }
-            }
-        </script>
+        else{
+            MenuItems.style.maxHeight = "0px";
+        }
+        }
+    </script>
 
-        <!-----------js for product gallery------->
+    <!-----------js for product gallery------->
 
-        <script>
-            var productimg = document.getElementById("productimg");
-            var smallimg = document.getElementById("small-img")
+    <script>
+        var productimg = document.getElementById("productimg");
+        var smallimg = document.getElementById("small-img")
 
-            smallimg[0].onclick = function(){
-                productimg.src = smallimg[0].src;
-            }
+        smallimg[0].onclick = function(){
+            productimg.src = smallimg[0].src;
+        }
 
-            smallimg[1].onclick = function(){
-                productimg.src = smallimg[1].src;
-            }
+        smallimg[1].onclick = function(){
+            productimg.src = smallimg[1].src;
+        }
 
-            smallimg[2].onclick = function(){
-                productimg.src = smallimg[2].src;
-            }
+        smallimg[2].onclick = function(){
+            productimg.src = smallimg[2].src;
+        }
 
-            smallimg[3].onclick = function(){
-                productimg.src = smallimg[3].src;
-            }
+        smallimg[3].onclick = function(){
+            productimg.src = smallimg[3].src;
+        }
 
-        </script>
+    </script>
 
     </body>
 </html>

@@ -30,17 +30,16 @@ public class LoginPageServlet extends HttpServlet {
         String pass = req.getParameter("pass1");
 
         LoginPageDao lpd = new LoginPageDao();
-
-        if(lpd.check(email, pass)) {
+        String userType = lpd.check(email, pass);
+        
+        if(userType != null) {
             session.setAttribute("userEmail", email);
-
+            session.setAttribute("userType", userType);
+            
             res.sendRedirect("index.jsp");
         } else {				
             res.sendRedirect("loginPage.jsp");			
         }
 
     }
-
-
-
 }

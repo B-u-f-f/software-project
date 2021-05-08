@@ -10,29 +10,48 @@ import java.sql.SQLException;
 import software.web.database.DatabaseConstants;
 
 public class LoginPageDao extends DatabaseConstants{
+    Connection con;
+    public LoginPageDao(){
+        try {
+            con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
-    public boolean check(String email, String pass) {
+    public String check(String email, String pass) {
         // String sql = "SELECT * FROM (SELECT EmailID, PasswordHash FROM FarmerAccount UNION SELECT EmailID, PasswordHash FROM CustomerAccount) AS EmailPassword WHERE EmailID = ? AND PasswordHash = ?;";
 
-        String sql = "SELECT EmailID, PasswordHash FROM CustomerAccount WHERE EmailID = ? AND PasswordHash = ?;";
-
+        String sqlCus = "SELECT EmailID, PasswordHash FROM CustomerAccount WHERE EmailID = ? AND PasswordHash = ?;";
+        String sqlFar = "SELECT EmailID, PasswordHash FROM FarmerAccount WHERE EmailID = ? AND PasswordHash = ?;";
         
         try {
-            Connection con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement st = con.prepareStatement(sqlCus);
             st.setString(1, email);
             st.setString(2, pass);
             ResultSet rs = st.executeQuery();
+
             if(rs.next()) {
-                return true;
+                return "Customer";
             }
 
-            con.close();
+            st = con.prepareStatement(sqlFar);
+            st.setString(1, email);
+            st.setString(2, pass);
+
+            rs = st.executeQuery();
+            if(rs.next()) {
+                return "Farmer";
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } 
 
         
-        return false;	
+        return null;	
 	}
+
+    protected void finalize() throws Throwable {
+        con.close();
+    }
 }
