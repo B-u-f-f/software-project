@@ -29,29 +29,10 @@
                 <a href="" class="btn">Explore Now &#8594;</a>
             </div>
             <div class="col-2">
-                <img src="images/far.png">
+                <img src="https://i.ibb.co/NLsNszW/far.png">
             </div>
         </div>
     </div>
-
-<!---featured categories--->
-
-    <div class="categories">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-3">
-                    <img src="images/c1 resize.jpg">
-                </div>
-                <div class="col-3">
-                    <img src="images/c2resize.PNG" alt="">
-                </div>
-                <div class="col-3">
-                    <img src="images/c3resize.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!--featured products-->
     <div class="small-container">
@@ -176,7 +157,7 @@
                         <i class="fa fa-star-half-o"></i>
                         <i class="fa fa-star-o"></i>
                     </div>
-                    <img src="images/user-1.png">
+                    <img src="https://i.ibb.co/Jq7BcT1/user-1.png">
                     <h3>Sean Parker</h3>
                 </div>
                 <div class="col-3">
@@ -189,7 +170,7 @@
                         <i class="fa fa-star-half-o"></i>
                         <i class="fa fa-star-o"></i>
                     </div>
-                    <img src="images/user-2.png">
+                    <img src="https://i.ibb.co/gWMSPX7/user-2.png">
                     <h3>Rizwan hussain</h3>
                 </div>
                 <div class="col-3">
@@ -202,7 +183,7 @@
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star-o"></i>
                     </div>
-                    <img src="images/user-3.png">
+                    <img src="https://i.ibb.co/tMrsSYX/user-3.png">
                     <h3>Mobel Joe</h3>
                 </div>
             </div>
@@ -215,16 +196,16 @@
         <div class="small-container">
             <div class="row">
                 <div class="col-5">
-                    <img src="images/logo 1.png">
+                    <img src="https://i.ibb.co/Mfkrthj/logo-2.png">
                 </div>
                 <div class="col-5">
-                    <img src="images/logo-paypal.png">
+                    <img src="https://i.ibb.co/NjJhT85/logo-1.png">
                 </div>
                 <div class="col-5">
-                    <img src="images/logo 2.png">
+                    <img src="https://i.ibb.co/qRbFBbX/logo-paypal.png">
                 </div>
                 <div class="col-5">
-                    <img src="images/gapy logo.png">
+                    <img src="https://i.ibb.co/8bQH9Yh/gapy-logo.png">
                 </div>
             </div>
         </div>

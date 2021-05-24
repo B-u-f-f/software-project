@@ -5,12 +5,12 @@
                 <h3>Download our App</h3>
                 <p>Download App for Android and Ios mobile phone.</p>
                 <div class="app-logo">
-                    <img src="../Resources/Images/PlayStore.jpeg">
-                    <img src="../Resources/Images/AppStore.jpeg">
+                    <img src="https://i.ibb.co/FJ8jGMc/play-store.png">
+                    <img src="https://i.ibb.co/0mZ0hrk/app-store.png">
                 </div>
             </div>
             <div class="footer-col-2">
-                <img src="images/cs.PNG">
+                <img src="https://i.ibb.co/LxVwW7x/cs.png">
                 <p>Our purpose is to connect farmers directly to the people</p>
             </div>
             <div class="footer-col-3">

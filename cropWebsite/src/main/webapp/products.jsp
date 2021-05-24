@@ -38,7 +38,8 @@
         <c:set var="numPerPage" value="${sessionScope.numPerPage}" />
         <c:set var="products" value="${sessionScope.productLength}" />
         <c:set var="numRows" value="${sessionScope.numRows}" />
-    
+        <c:set var="pageNo" value="${sessionScope.pageNumber}" />
+
         <div class="row row-2">
             <h2>All Products</h2>
             <form action="productShowcase" method="get">
@@ -46,7 +47,8 @@
                     <option value="byPrice"> Sort by price</option>
                     <option value="byRating">Sort by rating</option>
                 </select>
-                <input type="submit" value="Filter" />
+                <input type="hidden" name = "pageNo" value="${pageNo}" />
+                <input type="submit" class="btn" value="Filter" />
             </form>
         </div>
 
@@ -85,182 +87,6 @@
                 </div>
             </c:forEach>
         </c:if>
-        <!--
-        <div class="row">
-
-            <div class="col-4">
-                <img src="images/pro2.PNG">
-                <h4>Red Tomato</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>45.00 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro4.PNG">
-                <h4>Potato</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>29.00 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro3.PNG">
-                <h4>Onion</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>19.00 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro5.PNG">
-                <h4>Rice</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>174.00 &#8377;/kg </p>
-            </div>
-        </div>
-
-        <div class="row">
-
-
-            <div class="col-4">
-                <img src="images/pro6.PNG">
-                <h4>wheat</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>20.00 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro7.PNG">
-                <h4>Sugar</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>55.00 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro8.PNG">
-                <h4>Mustard Oil</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>181.00 &#8377;/L </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro9.PNG">
-                <h4>Watermelon</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>40.00 &#8377;/kg </p>
-            </div>
-        </div>
-
-        <div class="row">
-
-
-            <div class="col-4">
-                <img src="images/pro10.PNG">
-                <h4>Brinjal</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-                <p>21.00 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro11.PNG">
-                <h4>Pulses</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>29.00-120 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro12.PNG">
-                <h4>Cotton</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-                <p>700.00 &#8377;/kg </p>
-            </div>
-
-
-            <div class="col-4">
-                <img src="images/pro1.PNG">
-                <h4>Moong dal</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>165.00 &#8377;/kg </p>
-            </div>
-        </div> -->
 
 
         <div class="page-btn">

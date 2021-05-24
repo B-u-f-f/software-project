@@ -55,7 +55,7 @@
                             </div>
                         </div>
                     </td>
-                    <td><input type="number" value="${item.getQuantity()}"></td>
+                    <td><input type="text" value="${item.getQuantity()}" width="100px" disabled></td>
                     <c:set var="total" value="${total + item.getQuantity() * item.getPrice()}" />
                     <td>${item.getQuantity() * item.getPrice()} &#8377;/kg</td>
                 </tr>

@@ -29,14 +29,14 @@
 
         <div class="small-container single-product">
             <div class="row">
-                <div class="col-2">
+                <div class="col-2" style="width: 60%;">
                     <c:set var = "imageList" value = "${data.getImages()}" />
                     <c:set var="img_src" value="" />
                     <c:set var="img_src" value = "${imageList.get(0)}"/>
-                    <img src="${img_src}" width="60%" id="productimg">
+                    <img src="${img_src}" id="productimg" width="250px" height="250px">
                 
 
-                    <div class="small-img-row">
+                    <div class="small-img-row" style="width: 150px; height: 150px;">
                         <c:if test = "${imageList.size() > 1}">
                             <c:forEach var="i" begin="1" end="${imageList.size() - 1}" step="1">
                                 <img src="${imageList.get(i)}" width="100%" class="small-img">
@@ -56,8 +56,8 @@
                     
                     <form action="addCart" method="POST">
                         <input type="hidden" name="cropID" value="${data.getCropID()}">
-                        <input type="number" name="quantity" value="5">
-                        <input type="submit" value="Add to Cart">
+                        <input style="width: 100px;" type="number" name="quantity" value="5">
+                        <input type="submit" class="btn" value="Add to Cart">
                     </form>
                 
                
@@ -71,68 +71,6 @@
                     <c:forEach items="${catList}" var="catItem">
                         <p>${catItem.getCategoryType()} ${catItem.getValue()}</p>
                     </c:forEach>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="small-container">
-            <div class="row row-2">
-                <h2>Related Products</h2>
-                <p>View More</p>
-            </div>
-        </div>
-
-
-        <div class="small-container">
-            <div class="row">
-                <div class="col-4">
-                    <img src="images/pro10.PNG">
-                    <h4>Brinjal</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                    </div>
-                    <p>21.00 &#8377;/kg </p>
-                </div>
-                <div class="col-4">
-                    <img src="images/pro11.PNG">
-                    <h4>Pulses</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>29.00-120 &#8377;/kg </p>
-                </div>
-                <div class="col-4">
-                    <img src="images/pro12.PNG">
-                    <h4>Cotton</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                    </div>
-                    <p>700.00 &#8377;/kg </p>
-                </div>
-                <div class="col-4">
-                    <img src="images/pro1.PNG">
-                    <h4>Moong dal</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <i class="fa fa-star-o"></i>
-                    </div>
-                    <p>165.00 &#8377;/kg </p>
                 </div>
             </div>
         </div>

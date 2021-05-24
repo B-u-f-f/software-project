@@ -28,7 +28,7 @@
 <div class="container">
     <div class="navbar">
         <div class="logo">
-            <img src="images/cs.PNG" width="165px">
+            <img src="https://i.ibb.co/LxVwW7x/cs.png" width="165px">
         </div>
         <nav>
             <ul id="MenuItems">
@@ -54,7 +54,6 @@
                 </c:if>
             </ul>
         </nav>
-        <img src="images/images/cart.png" width="30px" height="30px">
-        <img src="images/images/menu.png" class="menu-icon" onclick="menutoggle()">
+        <img src="https://i.ibb.co/zb8qBs2/menu.png" width="30px" height="30px">
     </div>
 </div>

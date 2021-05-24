@@ -56,11 +56,8 @@ public class ProductsServlet extends HttpServlet {
         httpSession.setAttribute("numPages", numPages);
         httpSession.setAttribute("numPerPage", NUMPERPAGE);
         httpSession.setAttribute("productLength", products.length);
+        httpSession.setAttribute("pageNumber", pageNumber);
         
-        // System.out.println(numRows);
-        // System.out.println(products.length);
-        // System.out.println(numPages);
-
         httpSession.setAttribute("numRows", numRows);
 
 

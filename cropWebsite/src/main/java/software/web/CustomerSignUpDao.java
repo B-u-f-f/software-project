@@ -25,7 +25,7 @@ public class CustomerSignUpDao extends DatabaseConstants{
 
             st = con.prepareStatement(sqlStmt1);
             st.setString(1, email);
-            st.executeQuery();
+            st.executeUpdate();
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();

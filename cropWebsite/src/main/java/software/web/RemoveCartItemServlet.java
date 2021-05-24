@@ -35,7 +35,7 @@ public class RemoveCartItemServlet extends HttpServlet {
 
         if(httpSession.getAttribute("userEmail") != null){    
             String cropID = req.getParameter("CropID");
-            String emailID = (String)httpSession.getAttribute("userEmail");
+            String emailID = (String) httpSession.getAttribute("userEmail");
         
             rcid.removeItemCart(cropID, emailID);
             res.sendRedirect("/cart");

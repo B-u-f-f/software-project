@@ -27,7 +27,7 @@ public class RemoveCartItemDao extends DatabaseConstants {
     public void removeItemCart(String cropID, String emailID) {
         String sqlStmt = "DELETE FROM `Contains` WHERE CropID = ? AND EmailID = ?;";
 
-        String sqlStmtUpd = "UPDATE Cart SET ItemQuantity = (SELECT COUNT(c.EmailID) FROM `Contains` c INNER JOIN Crop c2 ON c.CropID = c2.CropID WHERE c.EmailID = ? GROUP BY c.EmailID), TotalPrice = (SELECT SUM(c.ProductQuantity * c2.Price) FROM `Contains` c INNER JOIN Crop c2 ON c.CropID = c2.CropID WHERE c.EmailID = ?) WHERE EmailID = ?;";
+        String sqlStmtUpd = "UPDATE Cart SET ItemQuantity = IFNULL((SELECT COUNT(c.EmailID) FROM `Contains` c INNER JOIN Crop c2 ON c.CropID = c2.CropID WHERE c.EmailID = ? GROUP BY c.EmailID), 0), TotalPrice = IFNULL((SELECT SUM(c.ProductQuantity * c2.Price) FROM `Contains` c INNER JOIN Crop c2 ON c.CropID = c2.CropID WHERE c.EmailID = ?), 0) WHERE EmailID = ?;";
 
         try {
             PreparedStatement st = con.prepareStatement(sqlStmt);
