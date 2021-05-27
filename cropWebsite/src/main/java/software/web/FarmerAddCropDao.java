@@ -29,6 +29,12 @@ import software.web.database.DatabaseConstants;
 public class FarmerAddCropDao extends DatabaseConstants{
     private Connection con;
 
+
+    /**
+    * This is a constructor that is used to open the connnection to the MYSQL Database.
+    * @param void
+    *     There is no parameter in this method.
+    */
     public FarmerAddCropDao(){
         try {
             con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
@@ -37,6 +43,29 @@ public class FarmerAddCropDao extends DatabaseConstants{
         }
     }
 
+    /**
+    * This is a function that is used to get the crop details that the farmer can put and then we can add them to the MYSQL Database.
+    * @param cropName
+    *     This String contains the name of the crop.
+    * @param quantity
+    *     This String contains the quantity of the crop that the farmer want to put.
+    * @param productionDate
+    *     This String contains the productionDate of the material that the farmer is putting.
+    * @param expirationDate
+    *     This String contains the expirationDate of the material that the farmer is putting.
+    * @param cropName
+    *     This int contains the price of the crop.
+    * @param cropType
+    *     This String contains the type of the crop.
+    * @param season
+    *     This String contains the season of the crop it grows.
+    * @param imgURLs
+    *     This ArrayList contains the image urls of the crop that the farmer wants to put.
+    * @param email
+    *     This String contains the email of the farmer who is putting the crops on the website.
+    * @return 
+    *     This returns void.
+    **/
     public void addCrop(String cropName, int quantity, String productionDate , String expirationDate , int price, 
                         String cropType , String season, ArrayList<String> imgURLs, String email){
                             
@@ -107,6 +136,13 @@ public class FarmerAddCropDao extends DatabaseConstants{
         }
     }
 
+    /**
+    * This method is used to close the connection that we opened in the constructor.
+    * @param void
+    *     This is no parameter in this method.
+    * @return 
+    *     The function returns void.
+    */
      protected void finalize() throws Throwable {
         con.close();
     }

@@ -34,7 +34,11 @@ WHERE CropID = 'Crop123'
 public class ProductDetailsDao extends DatabaseConstants {
     Connection con;
 
-
+    /**
+    * This is a constructor that is used to open the connnection to the MYSQL Database.
+    * @param void
+    *     This is no parameter in this method.
+    */
     public ProductDetailsDao(){
         try {   
             con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
@@ -43,6 +47,13 @@ public class ProductDetailsDao extends DatabaseConstants {
         }
     }
 
+    /**
+    * This method is used to get all the details of the crop whose cropID is given from the MYSQL Database.
+    * @param cropID
+    *     This is a String parameter to take in the cropID of the crop whose details we want.
+    * @return 
+    *     The function returns an object ProductData.
+    */
     private ProductData getProductNameDate(String CropID) {
         String sqlStmt = "SELECT CropName, MaxQuantity , ProductionDate , ExpirationDate , Price FROM Crop WHERE CropID = ?;";
 
@@ -72,10 +83,24 @@ public class ProductDetailsDao extends DatabaseConstants {
         return ProductData.getEmptyProductData();
     }
 
+    /**
+    * This method is used to close the connection that we opened in the constructor.
+    * @param void
+    *     This is no parameter in this method.
+    * @return 
+    *     The function returns void.
+    */
     protected void finalize() throws Throwable {
         con.close();
     }
 
+    /**
+    * This method is used to get all the images of the crop whose cropID is given from the MYSQL Database.
+    * @param cropID
+    *     This is a String parameter to take in the cropID of the crop whose images we want.
+    * @return 
+    *     The function returns an ArrayList<String> which contains the url of the image.
+    */  
     private ArrayList<String> getProductImages(String CropID) {
 
         String sqlStmt = "SELECT Images FROM CropImages WHERE CropID = ?;";
@@ -97,6 +122,13 @@ public class ProductDetailsDao extends DatabaseConstants {
         return result;
     } 
 
+    /**
+    * This method is used to get the category of the crop according to the cropID provided from the MYSQL Database. 
+    * @param cropID
+    *     This is the ID of the crop for which we want the crop category.
+    * @return
+    *     The function is returning ArrayList<String> conataining the crop categories.
+    */
     private ArrayList<String> getCategory(String CropID){
         String sqlStmt = "SELECT Category FROM CropCategory WHERE CropID =? AND Category != 'Featured';";
 
@@ -118,6 +150,13 @@ public class ProductDetailsDao extends DatabaseConstants {
         return result;
     }
 
+    /**
+    * This method is used to get the product, images and the categories of the Crop and putting all of it in one object.
+    * @param cropID
+    *     This is the ID of the crop for which we want all the crop details.
+    * @return
+    *     The function is returning Product Data conataining the crop categories.
+    */
     public ProductData getProductData(String cropID) {
         ProductData result = getProductNameDate(cropID);
         result.setImages(getProductImages(cropID));

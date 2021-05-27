@@ -18,6 +18,13 @@ import software.web.database.DatabaseConstants;
 
 public class IndexDao extends DatabaseConstants {
 
+    /**
+    * This is a method that is used to put the crop name and price of the crop from the MYSQL Database accordingly.
+    * @param void
+    *     There is no parameter.
+    * @return 
+    *     The function returns a ArrayList<CropData> which contains the data of the Crop
+    */
     private ArrayList<CropData> getCropNamePrice() {
         String sqlStmt = "SELECT CropID, CropName, Price FROM Crop;";
 
@@ -53,6 +60,13 @@ public class IndexDao extends DatabaseConstants {
         return result;
     }
 
+    /**
+    * This is a function that is used to get the crop image from the MYSQL Database accordingly.
+    * @param cropID
+    *     There is a String cropID of the particular crop.
+    * @return 
+    *     The function returns a String which contains the image uri.
+    */
     private String getImageURI(String cropID) {
         String sqlStmt = "SELECT Images FROM CropImages WHERE CropID=?;";
 
@@ -74,6 +88,13 @@ public class IndexDao extends DatabaseConstants {
         return "https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png"; // url of some "Not Found Error" image
     }
 
+    /**
+    * This is a function that is used to get all the data of the Crops in an ArrayList.
+    * @param void
+    *     There is no parameter.
+    * @return 
+    *     The function returns a ArrayList of CropData which contains all the information including the images.
+    */
     public ArrayList<CropData> getCropData(){
         ArrayList<CropData> namePrice = getCropNamePrice();
 
@@ -85,6 +106,13 @@ public class IndexDao extends DatabaseConstants {
         return namePrice;
     }
 
+    /**
+    * This is a fucntion that is used to get the category of the Crop according to the CropID from the MYSQL Database.
+    * @param cropID
+    *     There is a String cropID of the particular crop.
+    * @return 
+    *     The function returns an ArrayList<String> which contains the String of the categories of the crop.
+    */
     private ArrayList<String> getCropCategory(String cropID) {
         String sqlStmt = "SELECT Category FROM CropCategory WHERE CropID = ?;";
 
@@ -111,6 +139,13 @@ public class IndexDao extends DatabaseConstants {
 
 //R: number
 
+    /**
+    * This is a fucntion that is used to get the rating of the crop from the MYSQL Database.
+    * @param categories
+    *     This contains a ArrayList of String from where we have to find the rating if the crop.
+    * @return 
+    *     The function returns void.
+    */
     private int getRating(ArrayList<String> categories){
         for(String s: categories) {
             boolean b = Pattern.matches("^R: \\d$", s);
@@ -121,6 +156,13 @@ public class IndexDao extends DatabaseConstants {
         return 0;
     }
 
+    /**
+    * This is a method that is used to get the Featured Product among all the available products from the MYSQL Database.
+    * @param void
+    *     There is no parameter.
+    * @return 
+    *     The function returns a ArrayList<CropData> which cotains the featured crops.
+    */
     private ArrayList<CropData> getFeaturedProducts() {
         String sqlStmt = "SELECT c.CropID, c.CropName, c.Price FROM Crop c INNER JOIN CropCategory cc ON c.CropID = cc.CropID WHERE cc.Category = 'Featured';";
 
@@ -155,6 +197,13 @@ public class IndexDao extends DatabaseConstants {
         return result;
     }
 
+    /**
+    * This is a method that is used to get the Featured Product among all the available products.
+    * @param void
+    *     There is no parameter.
+    * @return 
+    *     The function returns a ArrayList<CropData> which cotains the featured crops.
+    */
     public ArrayList<CropData> getFeaturedCropData() {
         ArrayList<CropData> featuredCrops = getFeaturedProducts();
 
@@ -166,6 +215,13 @@ public class IndexDao extends DatabaseConstants {
         return featuredCrops;
     }
 
+    /**
+    * This is a method that is used to get the seasonal crops from the MYSQL Datbase.
+    * @param void
+    *     There is no parameter.
+    * @return 
+    *     The function returns an array of Strings which contains the crop's details.
+    */
     public String[] getSeasonalCrop() {
 
         String sqlStmt = "SELECT DISTINCT c.CropID, c.CropName, ci.Images FROM Crop c INNER JOIN CropCategory cc ON c.CropID = cc.CropID  LEFT OUTER JOIN CropImages ci on c.CropID = ci.CropID WHERE cc.Category = ?;";

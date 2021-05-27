@@ -20,9 +20,6 @@
 
     pageContext.setAttribute("isLogin", isLogin);
     pageContext.setAttribute("isFarmer", isFarmer);
-
-    out.println(isLogin);
-    out.println(isFarmer);
 %>
 
 <div class="container">

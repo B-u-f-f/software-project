@@ -19,7 +19,15 @@ import software.web.signup.database.FarmerSignUpDao;
 @WebServlet("/farmerSignUp") 
 public class FarmerSignUpServlet extends HttpServlet  {
     
-    
+    /**
+    * This method is used to get the form data using the post method in the farmerSignUp.jsp page and then redirect to the loginPage.jsp.
+    * @param req
+    *     This is a HttpServletRequest req from which we get the request info.
+    * @param res
+    *     This is a HttpServletResponse res through which we send the response to a webpage.
+    * @return 
+    *     The function is returning void.
+    */
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         
         String fname = req.getParameter("fname");

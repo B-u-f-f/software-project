@@ -9,13 +9,22 @@ import java.sql.SQLException;
 //Project imports
 import software.web.database.DatabaseConstants;
 
-/*
-DELETE FROM `Contains` WHERE CropID = 'Crop123' AND EmailID = 'abc123@gmail.com';
+ /**
+* The RemoveCartItem Dao is used to remove the products from a user's cart 
+* This functionality is achieved by executing a DELETE query on the database and then UPDATING the user's cart
+* @author  Ritwik Sinha
+* @version 1.0
+
 */
 
 public class RemoveCartItemDao extends DatabaseConstants {
     private Connection con;
 
+    /**
+    * This is a constructor that is used to open the connnection to the MYSQL Database.
+    * @param void
+    *     This is no parameter in this method.
+    */
     public RemoveCartItemDao() {
         try {
             con = DriverManager.getConnection(DatabaseConstants.getUrl(), DatabaseConstants.getUsername(), DatabaseConstants.getPassword());
@@ -24,6 +33,15 @@ public class RemoveCartItemDao extends DatabaseConstants {
         }
     }
 
+    /**
+    * This method is used to remove the crop item from the cart of the customer and modify the MYSQL Database accordingly.
+    * @param cropID
+    *     This is a String parameter to take in the cropID in order to remove from cart.
+    * @param emailID
+    *     This is String parameter to  take in the emailID of the customer from whose cart we are removing. 
+    * @return 
+    *     The function returns void.
+    */
     public void removeItemCart(String cropID, String emailID) {
         String sqlStmt = "DELETE FROM `Contains` WHERE CropID = ? AND EmailID = ?;";
 
@@ -45,6 +63,13 @@ public class RemoveCartItemDao extends DatabaseConstants {
         }
     }
 
+    /**
+    * This method is used to close the connection that we opened in the constructor.
+    * @param void
+    *     This is no parameter in this method.
+    * @return 
+    *     The function returns void.
+    */
     protected void finalize() throws Throwable {
         con.close();
     } 

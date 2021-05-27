@@ -15,6 +15,16 @@ import jakarta.servlet.http.HttpSession;
 import software.web.products.database.ProductsDao;
 import software.web.products.database.ProductData;
 
+
+ /**
+* The ProductsServlet retrives the products stored in the database and displays them in multiple pages 
+* The User can navigate through these pages and is also given the option to sort the products based on the price or rating.
+*
+* @author  Ritwik Sinha
+* @version 1.0
+*/
+
+
 @WebServlet("/productShowcase")
 public class ProductsServlet extends HttpServlet {
     HttpSession httpSession;
@@ -26,6 +36,15 @@ public class ProductsServlet extends HttpServlet {
         pd = new ProductsDao();
     }
 
+    /**
+    * This method is used to get the GET Request from the form in productdetails.jsp    
+    * @param req
+    *     This is a HttpServletRequest req from which we get the request info
+    * @param res
+    *     This is a HttpServletResponse res through which we send the response to a webpage
+    * @return 
+    *     The function is returning void.
+    */
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
         httpSession = req.getSession();
